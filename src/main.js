@@ -3,12 +3,14 @@
 import Vue from 'vue'
 import App from './App'
 import VueRouter from 'vue-router'
+import VueResource from 'vue-resource'
 import home from './components/home/home'
 import category from './components/category/category'
 import cart from './components/cart/cart'
 import order from './components/order/order'
 
 Vue.use(VueRouter)
+Vue.use(VueResource)
 
 Vue.config.productionTip = false
 

@@ -44,6 +44,7 @@ export default {
     display: flex;
     width: 100%;
     height: 40px;
+    background: #fff;
     line-height: 40px;
     text-align: center;
     position: fixed;

@@ -18,6 +18,7 @@ ul, ol { list-style: none; }
 a { text-decoration: none; }
 q:before, q:after { content: ''; }
 img { border: 0; }
+body {font-size: 0.24rem;}
 
 /* 重置表单元素 */
 legend { color: #000; } /* for ie6 */

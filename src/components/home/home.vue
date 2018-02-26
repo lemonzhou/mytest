@@ -71,7 +71,7 @@ export default {
         })
     },
     created () {
-        this.$http.get('/api/data').then((response) => {
+        this.$http.get('/api/products').then((response) => {
             response = response.body
             if (response.errno === ERR_OK) {
                 this.data = response.data

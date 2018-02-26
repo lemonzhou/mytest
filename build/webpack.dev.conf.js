@@ -13,6 +13,8 @@ const portfinder = require('portfinder')
 const express = require('express')
 const app = express()
 var appData = require('../data.json')
+var products = appData.products
+var category = appData.category
 var apiRoutes = express.Router()
 app.use('/api', apiRoutes) 
 
@@ -50,10 +52,16 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       poll: config.dev.poll,
     },
     before(app) {
-        app.get('/api/data', (req, res) => {
+        app.get('/api/products', (req, res) => {
             res.json({
                 errno: 0,
-                data: appData
+                data: products
+            })
+        })
+        app.get('/api/category', (req, res) => {
+            res.json({
+                errno: 0,
+                data: category
             })
         })
     }

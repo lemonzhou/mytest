@@ -11,20 +11,20 @@
             </div>
             <div class="content-list">
                 <template v-for="(item, key, index) in data.module">
-                    <!-- <template v-if="item.type_id == 19 && item.sub_type == 1" :index="index">
-                        <div class="banner" :key="key">
-                            <div v-for="(imgs, imgkey, imgindex) in item.value.nhotzone" :key="imgkey">
+                    <!-- <template v-if="item.type_id == 19 && item.sub_type == 1">
+                        <div class="banner" :key="index">
+                            <div v-for="(imgs, imgkey, imgindex) in item.value.nhotzone" :key="imgindex">
                                 <img :src="imgs.url" :index="imgindex" />
                             </div>
                         </div>
                     </template> -->
-                    <template v-if="item.type_id == 1 && item.sub_type == 1" :index="index">
-                        <div class="banner" :key="key">
+                    <template v-if="item.type_id == 1 && item.sub_type == 1">
+                        <div class="banner" :key="index">
                             <img :src="item.value.imgurl" />
                         </div>
                     </template>
-                    <template v-if="item.type_id == 5 && item.sub_type == 5" :index="index">
-                        <div v-for="(pro, key, index) in item.cct_product_list" :key="key">
+                    <template v-if="item.type_id == 5 && item.sub_type == 5">
+                        <div v-for="(pro, keypro, index) in item.cct_product_list" :key="index">
                             <div class="product" :index="index">
                                 <img :src="pro.image_urls_head" />
                                 <div class="product-info">

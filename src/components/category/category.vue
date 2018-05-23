@@ -16,7 +16,7 @@
                     <div class="cate-titel">{{group.name}}</div>
                     <div class="item-box">
                         <div class="cate-item" v-for="(cateitem,key,index) in group.catelogyList" :key="index">
-                            <div class="inner">
+                            <div class="inner" @click="searchResult(cateitem.action)">
                                 <img :src="cateitem.icon" />
                                 {{cateitem.name}}
                             </div>
@@ -65,6 +65,11 @@ export default {
                 height += item.clientHeight
                 this.listHeight.push(height)
             }
+        },
+        searchResult (action) {
+            if (action) {
+                window.location.href = action
+            }
         }
     },
     created () {
@@ -75,18 +80,12 @@ export default {
                 var catalogBranch = JSON.parse(this.data.catalogBranch)
                 this.data.catalogBranch = catalogBranch.data
                 console.log(this.data.catalogBranch)
-                console.log(document.documentElement.scrollTop)
                 document.getElementsByClassName('menu-wrapper')[0].style.height = (document.body.clientHeight || document.documentElement.clientHeight) + 'px'
                 document.getElementsByClassName('category-content')[0].style.height = (document.body.clientHeight || document.documentElement.clientHeight) + 'px'
-                if (!this.categoryScroll) {
-                    this.$nextTick(() => {
-                        this.initScroll()
-                        // this.calcHeight()
-                        console.log('dddddd')
-                    })
-                } else {
-                    this.categoryScroll.refresh()
-                }
+                this.$nextTick(() => {
+                    this.initScroll()
+                    this.calcHeight()
+                })
             }
         })
     }

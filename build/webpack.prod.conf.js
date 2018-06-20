@@ -13,17 +13,6 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 const env = require('../config/prod.env')
 
-const express = require('express')
-const app = express()
-var appData = require('../data.json')
-var products = appData.products
-var category = appData.category
-var apiRoutes = express.Router()
-app.use('/api', apiRoutes) 
-
-const HOST = process.env.HOST
-const PORT = config.dev.port
-
 const webpackConfig = merge(baseWebpackConfig, {
   module: {
     rules: utils.styleLoaders({
@@ -84,20 +73,6 @@ const webpackConfig = merge(baseWebpackConfig, {
       },
       // necessary to consistently work with multiple chunks via CommonsChunkPlugin
       chunksSortMode: 'dependency',
-      before(app) {
-            app.get('/api/products', (req, res) => {
-                res.json({
-                    errno: 0,
-                    data: products
-                })
-            })
-            app.get('/api/category', (req, res) => {
-                res.json({
-                    errno: 0,
-                    data: category
-                })
-            })
-        }
     }),
     // keep module.id stable when vendor modules does not change
     new webpack.HashedModuleIdsPlugin(),

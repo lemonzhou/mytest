@@ -8,6 +8,7 @@ import home from './components/home/home'
 import category from './components/category/category'
 import cart from './components/cart/cart'
 import order from './components/order/order'
+import detail from './components/detail/detail'
 
 Vue.use(VueRouter)
 Vue.use(VueResource)
@@ -20,7 +21,8 @@ var router = new VueRouter({
     { path: '/home', component: home },
     { path: '/category', component: category },
     { path: '/cart', component: cart },
-    { path: '/order', component: order }
+    { path: '/order', component: order },
+    { path: '/detail/:id', name: 'detail', component: detail }
   ]
 })
 

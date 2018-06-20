@@ -28,6 +28,8 @@ module.exports = {
     'no-multiple-empty-lines': 'off',
     'eol-last': 'off',
     'indent': 'off',
-    'no-unused-vars': 'off'
+    'no-unused-vars': 'off',
+    'semi':  'off',
+    'indent_size': 4
   }
 }

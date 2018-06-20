@@ -25,17 +25,19 @@
                     </template>
                     <template v-if="item.type_id == 5 && item.sub_type == 5">
                         <div v-for="(pro, keypro, index) in item.cct_product_list" :key="index">
-                            <div class="product" :index="index">
-                                <img :src="pro.image_urls_head" />
-                                <div class="product-info">
-                                    <div class="product-info-name">
-                                        {{pro.ad_name}}
-                                    </div>
-                                    <div class="product-info-price">
-                                        ￥{{pro.ad_coupon_price}}
+                            <!-- <router-link :to="'/detail/'+ pro.product_id"> -->
+                                <div class="product" :index="index" @click="detailClick(pro)">
+                                    <img :src="pro.image_urls_head" />
+                                    <div class="product-info">
+                                        <div class="product-info-name">
+                                            {{pro.ad_name}}
+                                        </div>
+                                        <div class="product-info-price">
+                                            ￥{{pro.ad_coupon_price}}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            <!-- </router-link> -->
                         </div>
                     </template>
                 </template>
@@ -78,6 +80,11 @@ export default {
                 console.log(this.data.module)
             }
         })
+    },
+    methods: {
+        detailClick: function (item) {
+            this.$router.push({name: 'detail', params: {id: item.product_id}});
+        }
     }
 }
 </script>

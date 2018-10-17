@@ -1,5 +1,6 @@
 <template>
     <div>
+        <div @click="setState">click test</div>
         <div class="banner">
             <div class="swiper-container">
                 <div class="swiper-wrapper">
@@ -47,13 +48,36 @@
 </template>
 <script>
 import Swiper from '../../../static/js/swiper-3.4.2.min.js'
+import axios from 'axios'
+import { mapState, mapMutations } from 'vuex'
 
 const ERR_OK = 0
 
 export default {
     data () {
         return {
-            data: []
+            data: [],
+            stateFlag: 'test111',
+            state2: '30',
+            amount: {
+                a: 'first',
+                b: 'second'
+            },
+            isLoading: true
+        }
+    },
+    computed: {
+        author () {
+            return this.$store.state.author
+        },
+        age () {
+            return this.$store.state.age
+        },
+        // ...mapState([
+        //     'stateList'
+        // ])
+        stateList () {
+            return this.$store.state.stateList
         }
     },
     mounted () {
@@ -71,19 +95,36 @@ export default {
                 observeParents: true
             })
         })
+        console.log(this.stateList);
     },
     created () {
-        this.$http.get('/api/products').then((response) => {
-            response = response.body
-            if (response.errno === ERR_OK) {
-                this.data = response.data
-                console.log(this.data.module)
-            }
-        })
+        var that = this;
+        setTimeout(() => {
+            this.isLoading = false;
+        }, 500)
+        this.$server.getShopApi('products', {params: {title: 'test01'}}, function (res) {
+            that.data = res.data
+        }, function (res) {
+            console.log('接口返回失败');
+        }, 'GET');
     },
     methods: {
         detailClick: function (item) {
             this.$router.push({name: 'detail', params: {id: item.product_id}});
+        },
+        // 测试vuex使用
+        setAuthor: function () {
+            this.$store.commit('newAuthor', this.stateFlag);
+            alert(this.author + this.age);
+        },
+        setAge: function () {
+            this.$store.commit('newAge', this.state2);
+            alert(this.author + this.age);
+        },
+        // ...mapMutations(['stateList'])
+        setState: function () {
+            this.$store.commit('stateList', this.amount)
+            console.log(this.stateList);
         }
     }
 }

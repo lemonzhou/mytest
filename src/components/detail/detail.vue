@@ -1,7 +1,19 @@
 <template>
-    <div>
-        detail
-        {{product_id}}
+    <div class="bgF7" style="margin-bottom:1rem;">
+        <div class="container clearfix bgFFF">
+            <div class="detail-img clearfix">
+                <!-- 返回的图标 -->
+                <a href=""></a>
+                <div class="main-img">
+                    <div class="swiper-container swiper-container-horizontal">
+                        <ul class="swiper-wrapper">
+                            <li class="swiper-slide">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 <script>
@@ -31,3 +43,14 @@ export default {
     }
 }
 </script>
+<style>
+    .bgF7 {
+        background: #F7F7F7;
+    }
+    .bgFFF {
+        background: #FFFFFF;
+    }
+    mb10 {
+        margin-bottom: 10px;
+    }
+</style>

@@ -30,6 +30,7 @@
 </template>
 <script>
 import BScroll from 'better-scroll'
+import axios from 'axios'
 
 const ERR_OK = 0
 export default {
@@ -73,21 +74,23 @@ export default {
         }
     },
     created () {
-        this.$http.get('/api/category').then((response) => {
-            response = response.body
-            if (response.errno === ERR_OK) {
-                this.data = response.data
-                var catalogBranch = JSON.parse(this.data.catalogBranch)
-                this.data.catalogBranch = catalogBranch.data
-                console.log(this.data.catalogBranch)
-                document.getElementsByClassName('menu-wrapper')[0].style.height = (document.body.clientHeight || document.documentElement.clientHeight) + 'px'
-                document.getElementsByClassName('category-content')[0].style.height = (document.body.clientHeight || document.documentElement.clientHeight) + 'px'
-                this.$nextTick(() => {
-                    this.initScroll()
-                    this.calcHeight()
-                })
-            }
-        })
+        var that = this;
+        that.$server.getShopApi('category', {}, function (res) {
+            that.data = res.data
+            var catalogBranch = JSON.parse(that.data.catalogBranch)
+            that.data.catalogBranch = catalogBranch.data
+            console.log(that.data.catalogBranch)
+            document.getElementsByClassName('menu-wrapper')[0].style.height = (document.body.clientHeight || document.documentElement.clientHeight) + 'px'
+            document.getElementsByClassName('category-content')[0].style.height = (document.body.clientHeight || document.documentElement.clientHeight) + 'px'
+            that.$nextTick(() => {
+                that.calcHeight()
+                setTimeout(function () {
+                    that.initScroll()
+                }, 300);
+            })
+        }, function (res) {
+            console.log('接口返回失败');
+        }, 'GET')
     }
 }
 </script>

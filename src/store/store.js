@@ -18,6 +18,11 @@ const store = new Vuex.Store({
         stateList (state, msg) {
             state.stateList = msg;
         }
+    },
+    actions: {
+        newAuthors (context) {
+            context.commit('newAuthor')
+        }
     }
 })
 export default store

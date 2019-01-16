@@ -110,7 +110,7 @@ export default {
     },
     methods: {
         detailClick: function (item) {
-            this.$router.push({name: 'detail', params: {id: item.product_id}});
+            this.$router.push({name: 'detail', query: {id: item.product_id}});
         },
         // 测试vuex使用
         setAuthor: function () {

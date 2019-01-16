@@ -8,7 +8,7 @@
         <router-link to="/home">首页</router-link>
       </div>
       <div class="tab-item">
-        <router-link to="/category">分类</router-link>
+        <router-link :to="{path: 'category', query: {'from': web}}">分类</router-link>
       </div>
       <div class="tab-item">
         <router-link to="/cart">购物车</router-link>
@@ -25,7 +25,8 @@ export default {
   name: 'App',
   data () {
     return {
-      home: ''
+      home: '',
+      web: 'web'
     }
   }
 }

@@ -20,13 +20,14 @@ Vue.use(VueRouter)
 Vue.config.productionTip = false
 
 var router = new VueRouter({
+  mode: 'history',
   routes: [
     { path: '/', component: home },
     { path: '/home', component: home },
     { path: '/category', component: category },
     { path: '/cart', component: cart },
     { path: '/order', component: order },
-    { path: '/detail/:id', name: 'detail', component: detail }
+    { path: '/detail/', name: 'detail', component: detail }
   ]
 })
 
